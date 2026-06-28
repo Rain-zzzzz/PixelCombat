@@ -1,0 +1,29 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Flash : MonoBehaviour
+{
+    [SerializeField] private Material whiteFlashMat;
+    [SerializeField] private float restoreDefaultMatTime = 0.2f;
+    private Material defualtMat;
+    private SpriteRenderer spriteRenderer;
+
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        defualtMat = spriteRenderer.material;
+    }
+
+    public IEnumerator FlashRoutine()
+    {
+        spriteRenderer.material = whiteFlashMat;
+        yield return new WaitForSeconds(restoreDefaultMatTime);
+        spriteRenderer.material = defualtMat;
+    }
+
+    public float GetRestoreDefaultMatTime()
+    {
+        return restoreDefaultMatTime;
+    }
+}
