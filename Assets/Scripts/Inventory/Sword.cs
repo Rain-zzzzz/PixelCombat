@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 
-public class Sword : MonoBehaviour
+public class Sword : MonoBehaviour, IWeapon
 {
     [SerializeField] private GameObject slashAnimPre;
     [SerializeField] private Transform slashAnimSpawnPoint;
     [SerializeField] private Transform weaponCollider;
-    private PlayerControls playerControls;
     private Animator myAnimator;
     private PlayerController playerController;// 定位鼠标位置
     private ActiveWeapon activeWeapon;//基于父对象进行翻转
@@ -17,20 +16,9 @@ public class Sword : MonoBehaviour
 
     private void Awake()
     {
-        playerControls = new PlayerControls();
         myAnimator = GetComponent<Animator>();
         playerController = GetComponentInParent<PlayerController>();
         activeWeapon = GetComponentInParent<ActiveWeapon>();
-    }
-
-    private void OnEnable()
-    {
-        playerControls.Enable();
-    }
-
-    private void Start()
-    {
-        playerControls.Combat.Attak.started += _ => Attach();
     }
 
     private void Update()
@@ -38,7 +26,7 @@ public class Sword : MonoBehaviour
         MouseFllowWithOffSet();
     }
 
-    private void Attach()
+    public void Attach()
     {
         weaponCollider.gameObject.SetActive(true);
         myAnimator.SetTrigger("Attach");
@@ -68,7 +56,7 @@ public class Sword : MonoBehaviour
             slashAnim.GetComponent<SpriteRenderer>().flipX = true;
         }
     }
-
+    //鼠标跟随武器旋转
     private void MouseFllowWithOffSet()
     {
         Vector3 mousePos = Input.mousePosition;

@@ -134,7 +134,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc30ebbe2fa805247947aa6312b0b230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transparentcyAmount: 0.119
+  transparentcyAmount: 0.8
+  transparentcyAmount_mp: 0.8
   fadeTime: 0.4
 --- !u!58 &5692497771137422365
 CircleCollider2D:

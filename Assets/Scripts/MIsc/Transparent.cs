@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
@@ -7,7 +8,7 @@ using UnityEngine.UI;
 public class Transparent : MonoBehaviour
 {
     [Range(0, 1)]
-    [SerializeField] private float transparentcyAmount = 0.5f;
+    [SerializeField] private float transparentcyAmount = 0.8f;
 
     [Range(0, 1)]
     [SerializeField] private float transparentcyAmount_mp = 0.8f;
@@ -26,8 +27,8 @@ public class Transparent : MonoBehaviour
     {
         if (collision.GetComponent<PlayerController>())
         {
-            if (spriteRenderer) StartCoroutine(FadeRoutine(true));
-            if (tilemap) StartCoroutine(FadeRoutine_TileMap(true));
+            if (spriteRenderer) { StartCoroutine(FadeRoutine(true)); }
+            if (tilemap) { StartCoroutine(FadeRoutine_TileMap(true)); }
         }
     }
 

@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : SingleTon<PlayerController>
 {
     public bool FacingLeft
     { get { return facingLeft; } set { facingLeft = value; } }
-
-    public static PlayerController instance;
 
     [SerializeField] private float moveSpeed = 1f;
     [SerializeField] private float dashSpeed = 4f;
@@ -18,12 +16,12 @@ public class PlayerController : MonoBehaviour
     private Animator myAnimator;
     private SpriteRenderer mySpriteRenderer;
     private bool isDashing = false;
-
     private bool facingLeft = false;
 
-    private void Awake()
+    protected override void Awake()
     {
-        instance = this;
+        base.Awake();
+
         playerControls = new PlayerControls();
         rg = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();

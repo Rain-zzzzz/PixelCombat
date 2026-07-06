@@ -23,7 +23,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        knockBack.GetKnockBack(PlayerController.instance.transform, 5f);
+        knockBack.GetKnockBack(PlayerController.Instance.transform, 5f);
         StartCoroutine(flash.FlashRoutine());
         StartCoroutine(CheckDestroyEnemy(damage));
     }
