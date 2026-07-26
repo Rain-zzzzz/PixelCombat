@@ -12,6 +12,7 @@ public class KnockBack : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        isGetKnock = false;
     }
 
     public void GetKnockBack(Transform damageSource, float knockBackThtust)

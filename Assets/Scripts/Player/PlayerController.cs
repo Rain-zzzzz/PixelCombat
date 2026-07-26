@@ -10,11 +10,15 @@ public class PlayerController : SingleTon<PlayerController>
     [SerializeField] private float moveSpeed = 1f;
     [SerializeField] private float dashSpeed = 4f;
     [SerializeField] private TrailRenderer myTrailRenderer;
+    [SerializeField] private Transform weaponCollider;
+    [SerializeField] private Transform slashAnimSpawnPoint;
+
     private PlayerControls playerControls;
     private Vector2 movement;
     private Rigidbody2D rg;
     private Animator myAnimator;
     private SpriteRenderer mySpriteRenderer;
+    private KnockBack knockBack;
     private bool isDashing = false;
     private bool facingLeft = false;
 
@@ -26,6 +30,7 @@ public class PlayerController : SingleTon<PlayerController>
         rg = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
         mySpriteRenderer = GetComponent<SpriteRenderer>();
+        knockBack = GetComponent<KnockBack>();
     }
 
     private void Start()
@@ -59,6 +64,10 @@ public class PlayerController : SingleTon<PlayerController>
 
     private void Move()
     {
+        if (knockBack.isGetKnock)
+        {
+            return;
+        }
         rg.MovePosition(rg.position + movement * (moveSpeed * Time.fixedDeltaTime));
     }
 
@@ -98,5 +107,15 @@ public class PlayerController : SingleTon<PlayerController>
         myTrailRenderer.emitting = false;
         yield return new WaitForSeconds(dashCD);
         isDashing = false;
+    }
+
+    public Transform GetWeaponCollider()
+    {
+        return weaponCollider;
+    }
+
+    public Transform GetSlashAnimSpawnPoint()
+    {
+        return slashAnimSpawnPoint;
     }
 }

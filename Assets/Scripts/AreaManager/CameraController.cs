@@ -7,6 +7,11 @@ public class CameraController : SingleTon<CameraController>
 {
     private CinemachineVirtualCamera cinemachineVirtualCamera;
 
+    private void Start()
+    {
+        SetPlaterCameraFollow();
+    }
+
     public void SetPlaterCameraFollow()
     {
         cinemachineVirtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
