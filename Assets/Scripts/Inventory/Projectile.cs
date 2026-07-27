@@ -28,6 +28,11 @@ public class Projectile : MonoBehaviour
         this.projectileRange = projectileRange;
     }
 
+    public void UpdateMoveSpeed(float newMoveSpeed)
+    {
+        this.moveSpeed = newMoveSpeed;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>();

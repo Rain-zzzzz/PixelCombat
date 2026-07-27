@@ -35,6 +35,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamege(int damegeAmount, Transform hitTransform)
     {
         if (!canKnock) { return; }
+        //ScreenShakeManager.Instance.ShakeScreen();
         knockBack.GetKnockBack(hitTransform.transform, knockBackThrustAmount);
         StartCoroutine(flash.FlashRoutine());
         canKnock = false;
